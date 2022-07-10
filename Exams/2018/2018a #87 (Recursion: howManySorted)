@@ -1,0 +1,21 @@
+public static int howManySorted(int n, int max) {
+        return howManySorted(n, max, 1);
+    }
+
+
+    public static int howManySorted(int n, int max, int i) {
+
+        if(i > max){
+            return 0; // move passed the maximum number
+        }
+
+        if(n == 0){
+            return 1; // a combination of an array has been made
+        }
+
+        // each recursive call will be split into 2
+        int use = howManySorted(n - 1,max,i); // use the number and subtract from the length of n "array"
+        int hold = howManySorted(n,max, i + 1); // hold the length of n "array" and add the next number
+
+        return use + hold;
+    }
