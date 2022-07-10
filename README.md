@@ -6,3 +6,5 @@ The file name should be in the following format: ```[year]_[semester + number]_[
 For example: ```"2022_A96_Qs1.java" / "2022_C84_Tst2.java"```
 
 Each file should be under the relevet year!
+
+Feel free to add your sulotions! 🔥💻🤘🏻
