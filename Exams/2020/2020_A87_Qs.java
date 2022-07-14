@@ -17,7 +17,7 @@ public class 2020_A87_Qs{
             spt1 = totalWays(mat, k, i+1, j, 'D') + totalWays(mat, k-1, i, j+1, 'L');
         else if(c == 'L')
             spt1 = totalWays(mat, k-1, i+1, j, 'D') + totalWays(mat, k, i, j+1, 'L');
-        else   // fot the first step
+        else   // for the first step
             spt1 = totalWays(mat, k, i+1, j, 'D') + totalWays(mat, k, i, j+1, 'L');
         return spt1;
     }
