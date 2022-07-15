@@ -1,4 +1,4 @@
-public class E2022_B92_Qs{
+public class E2022_B86_Qs{
 //Q1
     public static int maxPath(int [][] mat){
         return maxPath(mat,0,0,0);
