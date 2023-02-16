@@ -5,7 +5,7 @@ public class E2022_B86_Qs{
     }
     private static int maxPath(int[][] mat, int i, int j, int sum){
         if(i >= mat.length || j >= mat[0].length)
-            return Integer.MAX_VALUE;
+            return Integer.MIN_VALUE; //The equivalent to "False" in this question is Integer.MIN_VALUE and not Integer.MAX_VALUE.
         if(i == mat.length-1 && j == mat[0].length -1)
             return mat[i][j] + sum;
         int stp1 = mat[i][j] / 10, stp2 = mat[i][j]%10;
