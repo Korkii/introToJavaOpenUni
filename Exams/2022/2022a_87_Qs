@@ -1,7 +1,7 @@
 public class 2022a-87-Qs{
 
 
-  //Q1
+  //Q1a
     public static boolean isIdentity(int[][] mat, int x, int size){
         int endIndex = x+size-1; //End index of the identity Matrix
         if (size == 1 && mat[x][x]==1) //If size 1 and only cell value is 1
@@ -21,7 +21,7 @@ public class 2022a-87-Qs{
     }
     
 
-    /**
+    /**Q1b
      * Assisting function to check if a row in the identity matrix is valid
      * @param arr - a row in the matrix 
      * @param oneIndex - The location of the one in the arr
@@ -41,5 +41,30 @@ public class 2022a-87-Qs{
         
         return checkRow(arr, oneIndex, checkIndex+1, endIndex); //proceed to the next index in the identity row 
 }
+
+    /**
+    Q2
+    Time complexity - O(n)
+    Space complexity - O(1)
+    Takes the difference between the first two elements in the array. Checks if its the same difference for all elements in the array. If it encounters a non consisting difference
+    it will return the index that is missing according to the conditions. 
+    If its consisting, than the array is valid and the missing index is the length of the array.
+    */
+    public static int findMissingIndex(int[] a){
+        int change;
+        int firstChange = a[1] - a[0];
+        for (int i = 0 ;i<a.length-1 ;i++){
+            change = a[i+1]-a[i];
+            if (change != firstChange){
+                if (change>firstChange){
+                    return i+1;
+                }
+                return i;
+            
+            } 
+        }
+        return a.length;
+    }
+    
 
 }
