@@ -3,26 +3,25 @@
 //2.3:
 public static int what(int[] a) {
     int temp = 0;
-    int sum = 0;
-    int[] prefixSum = new int[a.length + 1];
-    prefixSum[0] = 0;
-
-    for (int i = 1; i <= a.length; i++) {
-        sum += a[i - 1];
-        prefixSum[i] = sum;
-    }
+    int currentSum = 0;
+    int maxTemp = 0;
 
     for (int i = 0; i < a.length; i++) {
-        for (int j = i; j < a.length; j++) {
-            int c = prefixSum[j + 1] - prefixSum[i];
-            if (c % 2 == 1) {
-                if (j - i + 1 > temp)
-                    temp = j - i + 1;
-            }
+        currentSum += a[i];
+        
+        if (currentSum % 2 == 1) {
+            temp = i + 1;
+        } else if (currentSum % 2 == 0 && temp > 0) {
+            temp--;
+        }
+
+        if (temp > maxTemp) {
+            maxTemp = temp;
         }
     }
 
-    return temp;
+    return maxTemp;
 }
 
-//2.4 This optimized version has a time complexity of O(n^2), where n is the length of the input array a. The prefix sum calculation takes O(n) time, and the nested loops take O(n^2) time in the worst case. Overall, this approach reduces the time complexity compared to the previous version.
+
+//2.4 This optimized version achieves a time complexity of O(n), where n is the length of the input array a. It traverses the array a only once, updating the relevant variables based on the current element's sum. By eliminating the nested loops, we significantly improve the efficiency of the algorithm.
