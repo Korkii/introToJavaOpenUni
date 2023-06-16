@@ -1,0 +1,28 @@
+//2.1 The mathod what is finding the length of the longest subarray in the given array a such that the sum of its elements is an odd number
+//2.2 O(n^3)
+//2.3:
+public static int what(int[] a) {
+    int temp = 0;
+    int sum = 0;
+    int[] prefixSum = new int[a.length + 1];
+    prefixSum[0] = 0;
+
+    for (int i = 1; i <= a.length; i++) {
+        sum += a[i - 1];
+        prefixSum[i] = sum;
+    }
+
+    for (int i = 0; i < a.length; i++) {
+        for (int j = i; j < a.length; j++) {
+            int c = prefixSum[j + 1] - prefixSum[i];
+            if (c % 2 == 1) {
+                if (j - i + 1 > temp)
+                    temp = j - i + 1;
+            }
+        }
+    }
+
+    return temp;
+}
+
+//2.4 This optimized version has a time complexity of O(n^2), where n is the length of the input array a. The prefix sum calculation takes O(n) time, and the nested loops take O(n^2) time in the worst case. Overall, this approach reduces the time complexity compared to the previous version.
