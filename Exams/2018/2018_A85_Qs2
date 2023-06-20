@@ -1,0 +1,27 @@
+//2.1 The mathod what is finding the length of the longest subarray in the given array a such that the sum of its elements is an odd number
+//2.2 O(n^3)
+//2.3:
+public static int what(int[] a) {
+    int temp = 0;
+    int currentSum = 0;
+    int maxTemp = 0;
+
+    for (int i = 0; i < a.length; i++) {
+        currentSum += a[i];
+        
+        if (currentSum % 2 == 1) {
+            temp = i + 1;
+        } else if (currentSum % 2 == 0 && temp > 0) {
+            temp--;
+        }
+
+        if (temp > maxTemp) {
+            maxTemp = temp;
+        }
+    }
+
+    return maxTemp;
+}
+
+
+//2.4 This optimized version achieves a time complexity of O(n), where n is the length of the input array a. It traverses the array a only once, updating the relevant variables based on the current element's sum. By eliminating the nested loops, we significantly improve the efficiency of the algorithm.
