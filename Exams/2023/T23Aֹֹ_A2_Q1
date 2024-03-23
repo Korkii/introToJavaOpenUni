@@ -1,0 +1,38 @@
+public static void main(String[] args) {
+        int[][] mat = {{0, 1, 1, 1},
+                {1, 0, 1, 1},
+                {1, 1, 0, 1},
+                {1, 1, 1, 0}};
+        int x = friend3(mat);
+        System.out.println(x);
+        char c= 'a';
+        c++;
+        System.out.println(c);
+
+    }
+
+
+    public static int friend3(int[][] mat) {
+        if (mat.length < 2) {
+            return 0;
+        }
+        boolean[][][] visited = new boolean[mat.length][mat.length][mat.length];
+        return friend3(mat, 0, 1, 2, visited);
+    }
+
+    public static int friend3(int[][] mat, int i, int j, int k, boolean[][][] visited) {
+        if (i >= mat.length - 2 || j >= mat.length - 1 || k >= mat.length) {
+            return 0;
+        }
+        int count = 0;
+        if (!visited[i][j][k] && mat[i][j] == 1 && mat[j][k] == 1 && mat[i][k] == 1) {
+            visited[i][j][k] = true;
+            visited[j][k][i] = true;
+            visited[i][k][j] = true;
+
+            count++;}
+        count += friend3(mat, i, j, k + 1, visited) +
+                friend3(mat, i, j + 1, k, visited) +
+                friend3(mat, i + 1, j, k, visited);
+        return count;
+    }
