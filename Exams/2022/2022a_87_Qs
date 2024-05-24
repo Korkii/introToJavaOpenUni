@@ -1,0 +1,70 @@
+public class 2022a-87-Qs{
+
+
+  //Q1a
+    public static boolean isIdentity(int[][] mat, int x, int size){
+        int endIndex = x+size-1; //End index of the identity Matrix
+        if (size == 1 && mat[x][x]==1) //If size 1 and only cell value is 1
+            return true;
+
+        return isIdentity(mat, x, endIndex, x);
+    }
+
+    public static boolean isIdentity(int[][] mat, int x, int endIndex, int checkIndex){
+        if (checkIndex>endIndex) //if end of identity matrix
+            return true;
+
+        if (checkRow(mat[checkIndex], checkIndex, x, endIndex)) //check if the row of the identity matrix is valid
+            return isIdentity(mat, x, endIndex, checkIndex+1); //proceed to the next row in the identity matrix
+
+        return false; //if any row is not valid, isIdentity will return false
+    }
+    
+
+    /**Q1b
+     * Assisting function to check if a row in the identity matrix is valid
+     * @param arr - a row in the matrix 
+     * @param oneIndex - The location of the one in the arr
+     * @param x - the starting point of the check
+     * @param endIndex - End index of the row to check
+     * */
+    public static Boolean checkRow(int[] arr, int oneIndex, int x, int endIndex){
+        return checkRow(arr, oneIndex, x, x, endIndex);
+    }
+
+    public static Boolean checkRow(int[] arr, int oneIndex, int checkIndex, int x, int endIndex){
+        if (checkIndex>endIndex) //if end of row of the identity matrix
+            return true;
+        
+        if ((checkIndex==oneIndex && arr[checkIndex] != 1) || (checkIndex!=oneIndex && arr[checkIndex] != 0)) //checks if in the index should be 1 or 0. Stopping argument as false
+            return false; 
+        
+        return checkRow(arr, oneIndex, checkIndex+1, endIndex); //proceed to the next index in the identity row 
+}
+
+    /**
+    Q2
+    Time complexity - O(n)
+    Space complexity - O(1)
+    Takes the difference between the first two elements in the array. Checks if its the same difference for all elements in the array. If it encounters a non consisting difference
+    it will return the index that is missing according to the conditions. 
+    If its consisting, than the array is valid and the missing index is the length of the array.
+    */
+    public static int findMissingIndex(int[] a){
+        int change;
+        int firstChange = a[1] - a[0];
+        for (int i = 0 ;i<a.length-1 ;i++){
+            change = a[i+1]-a[i];
+            if (change != firstChange){
+                if (change>firstChange){
+                    return i+1;
+                }
+                return i;
+            
+            } 
+        }
+        return a.length;
+    }
+    
+
+}
